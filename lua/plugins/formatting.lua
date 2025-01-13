@@ -1,8 +1,8 @@
 Add("stevearc/conform.nvim")
-Later(function() 
-	require("conform").setup{
+Later(function()
+	require("conform").setup({
 		formatters_by_ft = {
-			lua = { "stylua"}
+			lua = { "stylua" },
 		},
 		format_on_save = function(bufnr)
 			-- Disable with a global or buffer-local variable
@@ -11,7 +11,7 @@ Later(function()
 			end
 			return { timeout_ms = 500, lsp_format = "fallback" }
 		end,
-	}
+	})
 	vim.api.nvim_create_user_command("FormatDisable", function(args)
 		if args.bang then
 			-- FormatDisable! will disable formatting just for this buffer
@@ -29,5 +29,4 @@ Later(function()
 	end, {
 		desc = "Re-enable autoformat-on-save",
 	})
-
 end)
