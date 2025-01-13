@@ -40,25 +40,9 @@ function Remap(args)
 end
 
 require("opts")
-
--- Source all files in "lua/plugins" folder
-local plugins_dir = vim.fn.stdpath("config") .. "/lua/plugins"
-local handle = vim.loop.fs_scandir(plugins_dir)
-
-if not handle then
-	print("Could not open plugins directory: " .. plugins_dir)
-	return
-end
-
-while true do
-	local name, t = vim.loop.fs_scandir_next(handle)
-	if not name then
-		break -- No more entries
-	end
-
-	-- Check if the entry is a Lua file
-	if t == "file" and name:match("%.lua$") then
-		local plugin_name = name:sub(1, -5) -- Remove the ".lua" extension
-		require("plugins." .. plugin_name) -- Require the plugin
-	end
-end
+require("plugins.colorscheme")
+require("plugins.treesitter")
+require("plugins.mini")
+require("plugins.mason")
+require("plugins.lsp")
+require("plugins.formatting")
