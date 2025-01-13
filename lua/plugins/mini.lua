@@ -1,5 +1,6 @@
 -- Dependencies
 Add("rafamadriz/friendly-snippets")
+Add({ source = "MaximilianLloyd/ascii.nvim", depends = { "MunifTanjim/nui.nvim" } })
 
 -- Setup configuration
 Now(function()
@@ -113,7 +114,60 @@ Now(function()
 				gen_loader.from_lang(),
 			},
 		})
-		require("mini.starter").setup({})
+
+		local starter = require("mini.starter")
+		require("mini.starter").setup({
+			header = table.concat(require("ascii").art.text.neovim.dos_rebel, "\n"),
+			evaluate_single = true,
+			footer = os.date(),
+			items = {
+				starter.sections.pick(),
+				starter.sections.builtin_actions(),
+			},
+			content_hooks = {
+				starter.gen_hook.adding_bullet("› "),
+				function(content)
+					local header_lines = vim.tbl_map(function(c)
+						return content[c.line][c.unit].string
+					end, starter.content_coords(content, "header"))
+					local header_width = math.max(unpack(vim.tbl_map(function(l)
+						return vim.fn.strdisplaywidth(l)
+					end, header_lines)))
+
+					local other_coords = starter.content_coords(content, function(unit)
+						return unit.type ~= "header" and unit.type ~= "footer"
+					end)
+					local other_lines = vim.tbl_map(function(c)
+						return content[c.line][c.unit].string
+					end, other_coords)
+					local other_width = math.max(unpack(vim.tbl_map(function(l)
+						return vim.fn.strdisplaywidth(l)
+					end, other_lines)))
+
+					local pad_width = (header_width - other_width) * 0.5
+					local pad = string.rep(" ", pad_width)
+
+					local coords = starter.content_coords(content, function(unit)
+						return unit.type ~= "header" and unit.type ~= "footer" and unit.type ~= "item"
+					end)
+					for i = 1, #coords do
+						local l_num, u_num = coords[i].line, coords[i].unit
+						local centering_unit = {
+							string = pad,
+							type = "header_centering",
+							hl = nil,
+						}
+						table.insert(content[l_num], u_num, centering_unit)
+					end
+					-- put(content)
+					-- local lines_width = vim.tbl_map(function(l)
+					-- 	return vim.fn.strdisplaywidth(l)
+					-- end, line_strings)
+					return content
+				end,
+				starter.gen_hook.aligning("center", "center"),
+			},
+		})
 		require("mini.statusline").setup({})
 		require("mini.tabline").setup({})
 	end
