@@ -1,19 +1,22 @@
 -- Put this at the top of 'init.lua'
-local path_package = vim.fn.stdpath('data') .. '/site'
-local mini_path = path_package .. '/pack/deps/start/mini.nvim'
+local path_package = vim.fn.stdpath("data") .. "/site"
+local mini_path = path_package .. "/pack/deps/start/mini.nvim"
 if not vim.loop.fs_stat(mini_path) then
-  vim.cmd('echo "Installing `mini.nvim`" | redraw')
-  local clone_cmd = {
-    'git', 'clone', '--filter=blob:none',
-    -- Uncomment next line to use 'stable' branch
-    -- '--branch', 'stable',
-    'https://github.com/echasnovski/mini.nvim', mini_path
-  }
-  vim.fn.system(clone_cmd)
-  vim.cmd('packadd mini.nvim | helptags ALL')
+	vim.cmd('echo "Installing `mini.nvim`" | redraw')
+	local clone_cmd = {
+		"git",
+		"clone",
+		"--filter=blob:none",
+		-- Uncomment next line to use 'stable' branch
+		-- '--branch', 'stable',
+		"https://github.com/echasnovski/mini.nvim",
+		mini_path,
+	}
+	vim.fn.system(clone_cmd)
+	vim.cmd("packadd mini.nvim | helptags ALL")
 end
 
-require("mini.deps").setup{}
+require("mini.deps").setup({})
 
 vim.g.mapleader = " "
 Add = MiniDeps.add
@@ -50,13 +53,12 @@ end
 while true do
 	local name, t = vim.loop.fs_scandir_next(handle)
 	if not name then
-		break  -- No more entries
+		break -- No more entries
 	end
 
 	-- Check if the entry is a Lua file
 	if t == "file" and name:match("%.lua$") then
-		local plugin_name = name:sub(1, -5)  -- Remove the ".lua" extension
-		require("plugins." .. plugin_name)  -- Require the plugin
+		local plugin_name = name:sub(1, -5) -- Remove the ".lua" extension
+		require("plugins." .. plugin_name) -- Require the plugin
 	end
 end
-
