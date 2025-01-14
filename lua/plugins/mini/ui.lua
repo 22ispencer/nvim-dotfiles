@@ -40,7 +40,11 @@ Later(function()
 	})
 end)
 Later(function()
-	require("mini.notify").setup({})
+	require("mini.notify").setup({
+		lsp_progress = {
+			enabled = false,
+		},
+	})
 end)
 Now(function()
 	local pick = require("mini.pick")

@@ -46,6 +46,13 @@ Later(function()
 					},
 				})
 			end,
+			fsautocomplete = function()
+				require("lspconfig").fsautocomplete.setup({
+					on_attach = function(_, bufnr)
+						vim.b[bufnr].mininotify_disable = true
+					end,
+				})
+			end,
 		},
 	})
 end)
