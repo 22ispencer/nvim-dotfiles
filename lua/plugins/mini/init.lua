@@ -1,7 +1,3 @@
--- Dependencies
-Add("rafamadriz/friendly-snippets")
-Add({ source = "MaximilianLloyd/ascii.nvim", depends = { "MunifTanjim/nui.nvim" } })
-
 -- Setup configuration
 Now(function()
 	require("mini.extra").setup({})

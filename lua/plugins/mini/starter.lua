@@ -1,3 +1,4 @@
+Add({ source = "MaximilianLloyd/ascii.nvim", depends = { "MunifTanjim/nui.nvim" } })
 Now(function()
 	local starter = require("mini.starter")
 	require("mini.starter").setup({

@@ -53,6 +53,7 @@ end)
 Now(function()
 	require("mini.sessions").setup({})
 end)
+Add("rafamadriz/friendly-snippets")
 Later(function()
 	local gen_loader = require("mini.snippets").gen_loader
 	require("mini.snippets").setup({
