@@ -1,0 +1,6 @@
+Now(function()
+	require("mini.extra").setup({})
+end)
+Now(function()
+	require("mini.misc").setup({})
+end)

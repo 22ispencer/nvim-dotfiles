@@ -1,0 +1,8 @@
+require("plugins.colorscheme")
+require("plugins.mini")
+require("plugins.treesitter")
+require("plugins.mason")
+require("plugins.lsp")
+require("plugins.formatting")
+require("plugins.lint")
+require("plugins.bullets")

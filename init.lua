@@ -16,12 +16,13 @@ if not vim.loop.fs_stat(mini_path) then
 	vim.cmd("packadd mini.nvim | helptags ALL")
 end
 
-require("mini.deps").setup({})
+local deps = require("mini.deps")
+deps.setup({})
 
 vim.g.mapleader = " "
-Add = MiniDeps.add
-Now = MiniDeps.now
-Later = MiniDeps.later
+Add = deps.add
+Now = deps.now
+Later = deps.later
 function Remap(args)
 	local lhs = args[1]
 	local rhs = string.gsub(args[2], "^:(.-)$", "<cmd>%1<cr>")
@@ -40,9 +41,4 @@ function Remap(args)
 end
 
 require("opts")
-require("plugins.colorscheme")
-require("plugins.treesitter")
-require("plugins.mini")
-require("plugins.mason")
-require("plugins.lsp")
-require("plugins.formatting")
+require("plugins")
