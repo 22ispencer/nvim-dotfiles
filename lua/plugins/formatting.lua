@@ -2,6 +2,7 @@ Add("stevearc/conform.nvim")
 Later(function()
 	require("conform").setup({
 		formatters_by_ft = {
+			python = { "black" },
 			lua = { "stylua" },
 			javascript = { "prettierd" },
 			typescript = { "prettierd" },
