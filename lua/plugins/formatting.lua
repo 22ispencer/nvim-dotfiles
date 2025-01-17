@@ -3,6 +3,7 @@ Later(function()
 	require("conform").setup({
 		formatters_by_ft = {
 			python = { "black" },
+			zig = { "zigfmt" },
 			lua = { "stylua" },
 			javascript = { "prettierd" },
 			typescript = { "prettierd" },
