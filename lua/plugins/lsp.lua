@@ -46,6 +46,17 @@ Later(function()
 					},
 				})
 			end,
+			sourcekit = function()
+				require("lspconfig").sourcekit.setup({
+					capabilities = {
+						workspace = {
+							didChangeWatchedFiles = {
+								dynamicRegistration = true,
+							},
+						},
+					},
+				})
+			end,
 			fsautocomplete = function()
 				require("lspconfig").fsautocomplete.setup({
 					on_attach = function(_, bufnr)
