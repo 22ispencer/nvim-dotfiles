@@ -26,7 +26,7 @@ return {
 	{ "echasnovski/mini.bracketed", opts = {} },
 	{ "echasnovski/mini.diff", opts = {} },
 	{ "echasnovski/mini.jump", opts = {} },
-	{ "echasnovski/mini.jump2d", opts = {} },
+	-- { "echasnovski/mini.jump2d", opts = {} },
 	{ "echasnovski/mini.pairs", opts = {} },
 	{ "echasnovski/mini.splitjoin", opts = {} },
 	{ "echasnovski/mini.surround", opts = {} },
