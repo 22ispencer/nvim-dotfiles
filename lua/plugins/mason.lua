@@ -1,5 +1,7 @@
-Add("williamboman/mason.nvim")
-Later(function()
-	require("mason").setup({})
-	Remap({ "<leader>cm", ":Mason" })
-end)
+return {
+	"williamboman/mason.nvim",
+	opts = {},
+	keys = {
+		{ "<leader>cm", "<cmd>Mason<cr>" },
+	},
+}
