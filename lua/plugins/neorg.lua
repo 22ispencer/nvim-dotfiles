@@ -24,7 +24,7 @@ return {
 				},
 				["core.export"] = {},
 				["core.export.markdown"] = { config = { extensions = "all" } },
-				["core.summary"] = {},
+				["core.summary"] = { config = { strategy = "by_path" } },
 				["core.tangle"] = {
 					config = {
 						report_on_empty = false,
@@ -35,6 +35,16 @@ return {
 				["core.journal"] = {
 					config = {
 						workspace = "notes",
+					},
+				},
+				["core.qol.todo_items"] = {
+					config = {
+						create_todo_parents = true,
+						order = {
+							{ "undone", " " },
+							{ "pending", "-" },
+							{ "done", "x" },
+						},
 					},
 				},
 				-- make lists nicer

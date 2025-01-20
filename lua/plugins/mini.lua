@@ -109,6 +109,7 @@ return {
 				-- Leader triggers
 				{ mode = "n", keys = "<Leader>" },
 				{ mode = "x", keys = "<Leader>" },
+				{ mode = "n", keys = "<LocalLeader>" },
 
 				-- Built-in completion
 				{ mode = "i", keys = "<C-x>" },
@@ -138,6 +139,9 @@ return {
 			},
 
 			clues = {
+				{ mode = "n", keys = "<leader>f", desc = "+find" },
+				{ mode = "n", keys = "<leader>c", desc = "+code" },
+				{ mode = "n", keys = "<leader>t", desc = "+tabs" },
 				-- Enhance this by adding descriptions for <Leader> mapping groups
 				require("mini.clue").gen_clues.builtin_completion(),
 				require("mini.clue").gen_clues.g(),
@@ -173,6 +177,7 @@ return {
 				function()
 					require("mini.files").open()
 				end,
+				desc = "file explorer",
 			},
 		},
 	},
