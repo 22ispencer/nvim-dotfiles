@@ -1,6 +1,20 @@
 Add({ source = "MaximilianLloyd/ascii.nvim", depends = { "MunifTanjim/nui.nvim" } })
 Now(function()
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "MiniStarterOpened",
+		callback = function(ev)
+			vim.b[ev.buf].miniindentscope_disable = true
+		end,
+	})
 	local starter = require("mini.starter")
+	local content_type_width = function(content, section_type)
+		local coords = starter.content_coords(content, section_type)
+		local width = math.max(unpack(vim.tbl_map(function(c)
+			local line = content[c.line][c.unit].string
+			return vim.fn.strdisplaywidth(line)
+		end, coords)))
+		return width
+	end
 	require("mini.starter").setup({
 		header = table.concat(require("ascii").art.text.neovim.dos_rebel, "\n"),
 		evaluate_single = true,
@@ -13,28 +27,10 @@ Now(function()
 			starter.gen_hook.adding_bullet("› "),
 			function(content)
 				-- Coords
-				local header_coords = starter.content_coords(content, "header")
-				local section_coords = starter.content_coords(content, "section")
-				local item_coords = starter.content_coords(content, "item")
-				local footer_coords = starter.content_coords(content, "footer")
-
-				-- Lines
-				local header_width = math.max(unpack(vim.tbl_map(function(c)
-					local line = content[c.line][c.unit].string
-					return vim.fn.strdisplaywidth(line)
-				end, header_coords)))
-				local section_width = math.max(unpack(vim.tbl_map(function(c)
-					local line = content[c.line][c.unit].string
-					return vim.fn.strdisplaywidth(line)
-				end, section_coords)))
-				local item_width = math.max(unpack(vim.tbl_map(function(c)
-					local line = content[c.line][c.unit].string
-					return vim.fn.strdisplaywidth(line)
-				end, item_coords)))
-				local footer_width = math.max(unpack(vim.tbl_map(function(c)
-					local line = content[c.line][c.unit].string
-					return vim.fn.strdisplaywidth(line)
-				end, footer_coords)))
+				local header_width = content_type_width(content, "header")
+				local section_width = content_type_width(content, "section")
+				local item_width = content_type_width(content, "item")
+				local footer_width = content_type_width(content, "footer")
 				local max_width = math.max(header_width, section_width, item_width, footer_width)
 
 				for _, line in ipairs(content) do

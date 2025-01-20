@@ -45,6 +45,7 @@ Later(function()
 			enabled = false,
 		},
 	})
+	vim.notify = require("mini.notify").make_notify()
 end)
 Now(function()
 	local pick = require("mini.pick")
