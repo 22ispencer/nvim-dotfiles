@@ -1,0 +1,5 @@
+Add({ source = "NeogitOrg/neogit", depends = { "nvim-lua/plenary.nvim" } })
+Later(function()
+	require("neogit").setup({})
+	vim.keymap.set("n", "<leader>g", "<cmd>Neogit<cr>", { desc = "Neogit" })
+end)
