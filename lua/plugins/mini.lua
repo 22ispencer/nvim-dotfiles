@@ -36,7 +36,7 @@ return {
 		dependencies = {
 			{ "MaximilianLloyd/ascii.nvim", dependencies = { "MunifTanjim/nui.nvim" } },
 		},
-		cond = vim.g.vscode,
+		cond = not vim.g.vscode,
 		config = function()
 			vim.api.nvim_create_autocmd("User", {
 				pattern = "MiniStarterOpened",
