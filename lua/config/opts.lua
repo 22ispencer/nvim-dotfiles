@@ -12,14 +12,18 @@ vim.keymap.set("n", "<leader>tc", "<cmd>tcd ", { desc = "change directory of tab
 vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
 	callback = function(event)
 		if vim.bo[event.buf].filetype == "help" then
+			if vim.b[event.buf].help_resized then
+				return
+			end
 			vim.b[event.buf].minianimate_disable = true
-			local width = vim.api.nvim_win_get_width(0)
+			local width = vim.opt.columns:get()
 			if width > 81 * 2 then
 				vim.cmd("wincmd L")
 				vim.cmd("wincmd 81 |")
 			else
 				vim.cmd("wincmd T")
 			end
+			vim.b[event.buf].help_resized = true
 		end
 	end,
 })
