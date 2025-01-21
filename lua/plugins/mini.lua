@@ -214,7 +214,11 @@ return {
 		"echasnovski/mini.pick",
 		lazy = false,
 		cond = not vim.g.vscode,
-		opts = {},
+		config = function()
+			local pick = require("mini.pick")
+			pick.setup({})
+			vim.ui.select = pick.ui_select
+		end,
 		keys = {
 			{ "<leader><leader>", "<cmd>Pick buffers<cr>", desc = "find buffer" },
 			{ "<leader>ff", "<cmd>Pick files<cr>", desc = "find file" },
