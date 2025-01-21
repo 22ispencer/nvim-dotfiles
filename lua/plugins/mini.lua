@@ -103,7 +103,7 @@ return {
 	},
 	{
 		"echasnovski/mini.clue",
-		cond = vim.g.vscode,
+		cond = not vim.g.vscode,
 		opts = {
 			triggers = {
 				-- Leader triggers
@@ -152,13 +152,13 @@ return {
 			},
 		},
 	},
-	{ "echasnovski/mini.icons", cond = vim.g.vscode, opts = {} },
-	{ "echasnovski/mini.indentscope", cond = vim.g.vscode, opts = {} },
-	{ "echasnovski/mini.animate", cond = vim.g.vscode, opts = {} },
-	{ "echasnovski/mini.bufremove", cond = vim.g.vscode, opts = {} },
+	{ "echasnovski/mini.icons", cond = not vim.g.vscode, opts = {} },
+	{ "echasnovski/mini.indentscope", cond = not vim.g.vscode, opts = {} },
+	{ "echasnovski/mini.animate", cond = not vim.g.vscode, opts = {} },
+	{ "echasnovski/mini.bufremove", cond = not vim.g.vscode, opts = {} },
 	{
 		"echasnovski/mini.completion",
-		cond = vim.g.vscode,
+		cond = not vim.g.vscode,
 		opts = {},
 		keys = {
 			{ "<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]], modes = { "i" }, expr = true },
@@ -166,10 +166,10 @@ return {
 		},
 		events = { "InsertEnter" },
 	},
-	{ "echasnovski/mini.cursorword", cond = vim.g.vscode, opts = {} },
+	{ "echasnovski/mini.cursorword", cond = not vim.g.vscode, opts = {} },
 	{
 		"echasnovski/mini.files",
-		cond = vim.g.vscode,
+		cond = not vim.g.vscode,
 		opts = {},
 		keys = {
 			{
@@ -183,7 +183,7 @@ return {
 	},
 	{
 		"echasnovski/mini.hipatterns",
-		cond = vim.g.vscode,
+		cond = not vim.g.vscode,
 		opts = {
 			highlighters = {
 				-- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
@@ -199,7 +199,7 @@ return {
 	},
 	{
 		"echasnovski/mini.notify",
-		cond = vim.g.vscode,
+		cond = not vim.g.vscode,
 		config = function()
 			require("mini.notify").setup({
 				lsp_progress = {
@@ -212,7 +212,7 @@ return {
 	{
 		"echasnovski/mini.pick",
 		lazy = false,
-		cond = vim.g.vscode,
+		cond = not vim.g.vscode,
 		opts = {},
 		keys = {
 			{ "<leader><leader>", "<cmd>Pick buffers<cr>", desc = "find buffer" },
@@ -221,17 +221,17 @@ return {
 			{ "<leader>fg", "<cmd>Pick grep_live<cr>", desc = "find word (in files)" },
 		},
 	},
-	{ "echasnovski/mini.sessions", cond = vim.g.vscode, opts = {} },
+	{ "echasnovski/mini.sessions", cond = not vim.g.vscode, opts = {} },
 	{
 		"echasnovski/mini.snippets",
 		dependencies = { "rafamadriz/friendly-snippets" },
-		cond = vim.g.vscode,
+		cond = not vim.g.vscode,
 		opts = {
 			snippets = {
 				require("mini.snippets").gen_loader.from_lang(),
 			},
 		},
 	},
-	{ "echasnovski/mini.statusline", cond = vim.g.vscode, opts = {} },
-	{ "echasnovski/mini.tabline", cond = vim.g.vscode, opts = {} },
+	{ "echasnovski/mini.statusline", cond = not vim.g.vscode, opts = {} },
+	{ "echasnovski/mini.tabline", cond = not vim.g.vscode, opts = {} },
 }
