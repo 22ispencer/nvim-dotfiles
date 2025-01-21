@@ -159,12 +159,12 @@ return {
 	{
 		"echasnovski/mini.completion",
 		cond = not vim.g.vscode,
+		lazy = false,
 		opts = {},
 		keys = {
-			{ "<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]], modes = { "i" }, expr = true },
-			{ "<S-Tab>", [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], modes = { "i" }, expr = true },
+			{ "<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]], mode = "i", expr = true },
+			{ "<S-Tab>", [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], mode = "i", expr = true },
 		},
-		events = { "InsertEnter" },
 	},
 	{ "echasnovski/mini.cursorword", cond = not vim.g.vscode, opts = {} },
 	{
