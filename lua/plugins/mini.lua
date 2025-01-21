@@ -1,5 +1,6 @@
 return {
 	{ "echasnovski/mini.extra", opts = {} },
+	{ "echasnovski/mini.misc", opts = {} },
 	{
 		"echasnovski/mini.ai",
 		opts = {
