@@ -11,4 +11,5 @@ return {
 			},
 		})
 	end,
+	build = ":TSUpdate",
 }
