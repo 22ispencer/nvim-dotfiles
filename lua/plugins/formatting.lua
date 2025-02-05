@@ -39,4 +39,12 @@ return {
 			desc = "Re-enable autoformat-on-save",
 		})
 	end,
+	lazy = false,
+	keys = { {
+		"<leader>cf",
+		function()
+			require("conform").format()
+		end,
+		desc = "format buffer",
+	} },
 }
