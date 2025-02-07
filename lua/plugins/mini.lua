@@ -3,15 +3,19 @@ return {
 	{ "echasnovski/mini.misc", opts = {} },
 	{
 		"echasnovski/mini.ai",
-		opts = {
-			custom_textobjects = {
-				B = require("mini.extra").gen_ai_spec.buffer(),
-				D = require("mini.extra").gen_ai_spec.diagnostic(),
-				I = require("mini.extra").gen_ai_spec.indent(),
-				L = require("mini.extra").gen_ai_spec.line(),
-				N = require("mini.extra").gen_ai_spec.number(),
-			},
-		},
+		dependencies = { "echasnovski/mini.extra" },
+		config = function()
+			local extra = require("mini.extras")
+			require("mini.ai").setup({
+				custom_textobjects = {
+					B = extra.gen_ai_spec.buffer(),
+					D = extra.gen_ai_spec.diagnostic(),
+					I = extra.gen_ai_spec.indent(),
+					L = extra.gen_ai_spec.line(),
+					N = extra.gen_ai_spec.number(),
+				},
+			})
+		end,
 	},
 	{ "echasnovski/mini.align", opts = {} },
 	{
@@ -54,7 +58,7 @@ return {
 				end, coords)))
 				return width
 			end
-			require("mini.starter").setup({
+			starter.setup({
 				header = table.concat(require("ascii").art.text.neovim.dos_rebel, "\n"),
 				evaluate_single = true,
 				footer = os.date(),
@@ -105,53 +109,56 @@ return {
 	{
 		"echasnovski/mini.clue",
 		cond = not vim.g.vscode,
-		opts = {
-			triggers = {
-				-- Leader triggers
-				{ mode = "n", keys = "<Leader>" },
-				{ mode = "x", keys = "<Leader>" },
-				{ mode = "n", keys = "<LocalLeader>" },
+		config = function()
+			local clue = require("mini.clue")
+			clue.setup({
+				triggers = {
+					-- Leader triggers
+					{ mode = "n", keys = "<Leader>" },
+					{ mode = "x", keys = "<Leader>" },
+					{ mode = "n", keys = "<LocalLeader>" },
 
-				-- Built-in completion
-				{ mode = "i", keys = "<C-x>" },
+					-- Built-in completion
+					{ mode = "i", keys = "<C-x>" },
 
-				-- `g` key
-				{ mode = "n", keys = "g" },
-				{ mode = "x", keys = "g" },
+					-- `g` key
+					{ mode = "n", keys = "g" },
+					{ mode = "x", keys = "g" },
 
-				-- Marks
-				{ mode = "n", keys = "'" },
-				{ mode = "n", keys = "`" },
-				{ mode = "x", keys = "'" },
-				{ mode = "x", keys = "`" },
+					-- Marks
+					{ mode = "n", keys = "'" },
+					{ mode = "n", keys = "`" },
+					{ mode = "x", keys = "'" },
+					{ mode = "x", keys = "`" },
 
-				-- Registers
-				{ mode = "n", keys = '"' },
-				{ mode = "x", keys = '"' },
-				{ mode = "i", keys = "<C-r>" },
-				{ mode = "c", keys = "<C-r>" },
+					-- Registers
+					{ mode = "n", keys = '"' },
+					{ mode = "x", keys = '"' },
+					{ mode = "i", keys = "<C-r>" },
+					{ mode = "c", keys = "<C-r>" },
 
-				-- Window commands
-				{ mode = "n", keys = "<C-w>" },
+					-- Window commands
+					{ mode = "n", keys = "<C-w>" },
 
-				-- `z` key
-				{ mode = "n", keys = "z" },
-				{ mode = "x", keys = "z" },
-			},
+					-- `z` key
+					{ mode = "n", keys = "z" },
+					{ mode = "x", keys = "z" },
+				},
 
-			clues = {
-				{ mode = "n", keys = "<leader>f", desc = "+find" },
-				{ mode = "n", keys = "<leader>c", desc = "+code" },
-				{ mode = "n", keys = "<leader>t", desc = "+tabs" },
-				-- Enhance this by adding descriptions for <Leader> mapping groups
-				require("mini.clue").gen_clues.builtin_completion(),
-				require("mini.clue").gen_clues.g(),
-				require("mini.clue").gen_clues.marks(),
-				require("mini.clue").gen_clues.registers(),
-				require("mini.clue").gen_clues.windows(),
-				require("mini.clue").gen_clues.z(),
-			},
-		},
+				clues = {
+					{ mode = "n", keys = "<leader>f", desc = "+find" },
+					{ mode = "n", keys = "<leader>c", desc = "+code" },
+					{ mode = "n", keys = "<leader>t", desc = "+tabs" },
+					-- Enhance this by adding descriptions for <Leader> mapping groups
+					clue.gen_clues.builtin_completion(),
+					clue.gen_clues.g(),
+					clue.gen_clues.marks(),
+					clue.gen_clues.registers(),
+					clue.gen_clues.windows(),
+					clue.gen_clues.z(),
+				},
+			})
+		end,
 	},
 	{ "echasnovski/mini.icons", cond = not vim.g.vscode, opts = {} },
 	{ "echasnovski/mini.indentscope", cond = not vim.g.vscode, opts = {} },
@@ -231,11 +238,14 @@ return {
 		"echasnovski/mini.snippets",
 		dependencies = { "rafamadriz/friendly-snippets" },
 		cond = not vim.g.vscode,
-		opts = {
-			snippets = {
-				require("mini.snippets").gen_loader.from_lang(),
-			},
-		},
+		config = function()
+			local snippets = require("mini.snippets")
+			snippets.setup({
+				snippets = {
+					snippets.gen_loader.from_lang(),
+				},
+			})
+		end,
 	},
 	{ "echasnovski/mini.statusline", cond = not vim.g.vscode, opts = {} },
 	{ "echasnovski/mini.tabline", cond = not vim.g.vscode, opts = {} },
