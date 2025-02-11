@@ -5,7 +5,7 @@ return {
 		"echasnovski/mini.ai",
 		dependencies = { "echasnovski/mini.extra" },
 		config = function()
-			local extra = require("mini.extras")
+			local extra = require("mini.extra")
 			require("mini.ai").setup({
 				custom_textobjects = {
 					B = extra.gen_ai_spec.buffer(),
