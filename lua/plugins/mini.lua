@@ -164,16 +164,16 @@ return {
 	{ "echasnovski/mini.indentscope", cond = not vim.g.vscode, opts = {} },
 	{ "echasnovski/mini.animate", cond = not vim.g.vscode, opts = {} },
 	{ "echasnovski/mini.bufremove", cond = not vim.g.vscode, opts = {} },
-	{
-		"echasnovski/mini.completion",
-		cond = not vim.g.vscode,
-		lazy = false,
-		opts = {},
-		keys = {
-			{ "<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]], mode = "i", expr = true },
-			{ "<S-Tab>", [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], mode = "i", expr = true },
-		},
-	},
+	-- {
+	-- 	"echasnovski/mini.completion",
+	-- 	cond = not vim.g.vscode,
+	-- 	lazy = false,
+	-- 	opts = {},
+	-- 	keys = {
+	-- 		{ "<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]], mode = "i", expr = true },
+	-- 		{ "<S-Tab>", [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], mode = "i", expr = true },
+	-- 	},
+	-- },
 	{ "echasnovski/mini.cursorword", cond = not vim.g.vscode, opts = {} },
 	{
 		"echasnovski/mini.files",
