@@ -13,6 +13,7 @@ return {
 				astro = { "prettierd" },
 				svelte = { "prettierd" },
 				asm = { "asmfmt" },
+				json = { "prettierd" },
 			},
 			format_on_save = function(bufnr)
 				-- Disable with a global or buffer-local variable
