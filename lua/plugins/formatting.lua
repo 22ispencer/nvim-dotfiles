@@ -1,26 +1,27 @@
 return {
 	"stevearc/conform.nvim",
 	config = function()
+		local js = { "prettierd", "prettier", stop_after_first = true }
 		require("conform").setup({
 			formatters_by_ft = {
 				python = { "black" },
 				zig = { "zigfmt" },
 				lua = { "stylua" },
-				javascript = { "prettierd" },
-				typescript = { "prettierd" },
-				javascriptreact = { "prettierd" },
-				typescriptreact = { "prettierd" },
-				astro = { "prettierd" },
-				svelte = { "prettierd" },
+				javascript = js,
+				typescript = js,
+				javascriptreact = js,
+				typescriptreact = js,
+				astro = js,
+				svelte = js,
 				asm = { "asmfmt" },
-				json = { "prettierd" },
+				json = js,
 			},
 			format_on_save = function(bufnr)
 				-- Disable with a global or buffer-local variable
 				if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
 					return
 				end
-				return { timeout_ms = 1000, lsp_format = "fallback" }
+				return { timeout_ms = 1000 }
 			end,
 		})
 		vim.api.nvim_create_user_command("FormatDisable", function(args)
