@@ -26,3 +26,8 @@ vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
 		end
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	pattern = { "*.vert", "*.tesc", "*.tese", "*.geom", "*.frag", "*.comp" },
+	command = "set ft=glsl",
+})
