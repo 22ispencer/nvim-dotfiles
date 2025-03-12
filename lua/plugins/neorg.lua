@@ -6,6 +6,9 @@ return {
 		require("neorg").setup({
 			load = {
 				["core.defaults"] = {},
+				["core.completion"] = {
+					config = { engine = "nvim-cmp" },
+				},
 				["core.concealer"] = {},
 				["core.dirman"] = {
 					config = {
@@ -24,6 +27,9 @@ return {
 				},
 				["core.export"] = {},
 				["core.export.markdown"] = { config = { extensions = "all" } },
+				["core.integrations.treesitter"] = {},
+				["core.integrations.nvim-cmp"] = {},
+				["core.latex.renderer"] = {},
 				["core.summary"] = { config = { strategy = "by_path" } },
 				["core.tangle"] = {
 					config = {

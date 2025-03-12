@@ -10,6 +10,7 @@ return {
 			"echasnovski/mini.snippets",
 			"abeldekat/cmp-mini-snippets",
 			"micangl/cmp-vimtex",
+			"nvim-neorg/neorg",
 		},
 		config = function()
 			local has_words_before = function()
@@ -56,6 +57,7 @@ return {
 					end,
 				},
 				sources = cmp.config.sources({
+					{ name = "neorg" },
 					{ name = "nvim_lsp" },
 					{ name = "mini_snippets" },
 					{ name = "vimtex" },
