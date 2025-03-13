@@ -1,7 +1,7 @@
 return {
 	"stevearc/conform.nvim",
 	config = function()
-		local js = { "prettierd", "prettier", stop_after_first = true }
+		local js = { "biome", "prettierd", "prettier", stop_after_first = true }
 		require("conform").setup({
 			formatters_by_ft = {
 				c = { "clang-format" },
