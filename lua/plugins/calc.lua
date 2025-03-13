@@ -4,7 +4,7 @@ return {
 	keys = { {
 		"<leader>*",
 		function()
-			require("calc").open()
+			require("calc")
 		end,
 		desc = "open calc",
 	} },

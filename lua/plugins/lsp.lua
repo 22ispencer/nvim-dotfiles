@@ -65,6 +65,21 @@ return {
 						end,
 					})
 				end,
+				fennel_language_server = function()
+					require("lspconfig").fennel_language_server.setup({
+						filetypes = { "fennel" },
+						root_dir = require("lspconfig").util.root_pattern("fnl", "lua"),
+						single_file_support = true,
+						settings = {
+							fennel = {
+								diagnostics = {
+									globals = { "vim", "jit", "comment" },
+								},
+								workspace = { library = vim.api.nvim_list_runtime_paths() },
+							},
+						},
+					})
+				end,
 			},
 		},
 	},
