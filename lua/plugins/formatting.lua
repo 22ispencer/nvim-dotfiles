@@ -4,6 +4,7 @@ return {
 		local js = { "prettierd", "prettier", stop_after_first = true }
 		require("conform").setup({
 			formatters_by_ft = {
+				c = { "clang-format" },
 				python = { "black" },
 				zig = { "zigfmt" },
 				lua = { "stylua" },
@@ -13,6 +14,7 @@ return {
 				typescriptreact = js,
 				astro = js,
 				svelte = js,
+				html = js,
 				asm = { "asmfmt" },
 				json = js,
 			},
