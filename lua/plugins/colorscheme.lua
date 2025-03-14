@@ -3,11 +3,11 @@ return {
 		"sainnhe/sonokai",
 		lazy = false,
 		priority = 1000,
-		config = function()
-			-- Optionallyconfigure and load the colorscheme
-			-- directly inside the plugin declaration.
+		init = function()
 			vim.g.sonokai_enable_italic = true
 			vim.g.sonokai_style = "shusia"
+		end,
+		config = function()
 			vim.cmd.colorscheme("sonokai")
 		end,
 	},
