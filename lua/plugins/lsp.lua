@@ -1,6 +1,12 @@
 return {
 
-	{ "neovim/nvim-lspconfig" },
+	{
+		"neovim/nvim-lspconfig",
+		config = function()
+			local lspconfig = require("lspconfig")
+			lspconfig.sourcekit.setup({})
+		end,
+	},
 	{
 		"williamboman/mason-lspconfig",
 		dependencies = { "williamboman/mason.nvim" },
@@ -47,17 +53,6 @@ return {
 						},
 					})
 				end,
-				-- sourcekit = function()
-				-- 	require("lspconfig").sourcekit.setup({
-				-- 		capabilities = {
-				-- 			workspace = {
-				-- 				didChangeWatchedFiles = {
-				-- 					dynamicRegistration = true,
-				-- 				},
-				-- 			},
-				-- 		},
-				-- 	})
-				-- end,
 				fsautocomplete = function()
 					require("lspconfig").fsautocomplete.setup({
 						on_attach = function(_, bufnr)
