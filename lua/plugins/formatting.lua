@@ -3,6 +3,13 @@ return {
 	config = function()
 		local js = { "biome", "prettierd", "prettier", stop_after_first = true }
 		require("conform").setup({
+			formatters = {
+				prisma = {
+					command = require("conform.util").from_node_modules("prisma"),
+					args = { "format", "--schema", "$FILENAME" },
+					stdin = false,
+				},
+			},
 			formatters_by_ft = {
 				c = { "clang-format" },
 				python = { "black" },
@@ -15,6 +22,7 @@ return {
 				astro = js,
 				svelte = js,
 				html = js,
+				prisma = { "prisma" },
 				asm = { "asmfmt" },
 				json = js,
 			},
