@@ -21,6 +21,7 @@ return {
 				json = js,
 				prisma = { "prisma" },
 				python = { "black" },
+				rust = { "rustfmt" },
 				svelte = js,
 				typescript = js,
 				typescriptreact = js,
