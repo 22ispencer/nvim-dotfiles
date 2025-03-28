@@ -2,6 +2,13 @@ return {
 	"stevearc/conform.nvim",
 	config = function()
 		local js = { "biome", "prettierd", "prettier", stop_after_first = true }
+		local function swift_format_path()
+			local f = assert(io.popen("xcrun --find swift-format", "r"))
+			--- @type string
+			local s = f:read("*a") or "swift-format"
+			f:close()
+			return s:match("%S+")
+		end
 		require("conform").setup({
 			formatters = {
 				prisma = {
@@ -11,26 +18,56 @@ return {
 					["clang-format"] = {
 						args = "-style=Google",
 					},
+					swift_format = {
+						command = swift_format_path(),
+					},
+					["clang-format"] = {
+						args = "-style=Google",
+					},
+					formatters_by_ft = {
+						asm = { "asmfmt" },
+						astro = js,
+						c = { "clang-format" },
+						cpp = { "clang-format" },
+						html = js,
+						python = { "black" },
+						zig = { "zigfmt" },
+						lua = { "stylua" },
+						javascript = js,
+						javascriptreact = js,
+						json = js,
+						prisma = { "prisma" },
+						python = { "black" },
+						rust = { "rustfmt" },
+						svelte = js,
+						typescript = js,
+						typescriptreact = js,
+						zig = { "zigfmt" },
+					},
+					format_on_save = function(bufnr)
+						-- Disable with a global or buffer-local variable
+						if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+							return
+						end
+						return { timeout_ms = 1000 }
+					end,
 				},
 				formatters_by_ft = {
-					asm = { "asmfmt" },
-					astro = js,
 					c = { "clang-format" },
 					cpp = { "clang-format" },
-					html = js,
 					python = { "black" },
 					zig = { "zigfmt" },
 					lua = { "stylua" },
 					javascript = js,
-					javascriptreact = js,
-					json = js,
-					prisma = { "prisma" },
-					python = { "black" },
-					rust = { "rustfmt" },
-					svelte = js,
 					typescript = js,
+					javascriptreact = js,
 					typescriptreact = js,
-					zig = { "zigfmt" },
+					astro = js,
+					svelte = js,
+					html = js,
+					asm = { "asmfmt" },
+					json = js,
+					swift = { "swift_format" },
 				},
 				format_on_save = function(bufnr)
 					-- Disable with a global or buffer-local variable
