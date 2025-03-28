@@ -6,9 +6,9 @@ return {
 		require("neorg").setup({
 			load = {
 				["core.defaults"] = {},
-				["core.completion"] = {
-					config = { engine = "nvim-cmp" },
-				},
+				-- ["core.completion"] = {
+				-- 	config = { engine = "blink.cmp" },
+				-- },
 				["core.concealer"] = {},
 				["core.dirman"] = {
 					config = {
