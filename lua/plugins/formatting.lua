@@ -15,50 +15,43 @@ return {
 					command = require("conform.util").from_node_modules("prisma"),
 					args = { "format", "--schema", "$FILENAME" },
 					stdin = false,
-					["clang-format"] = {
-						args = "-style=Google",
-					},
-					swift_format = {
-						command = swift_format_path(),
-					},
-					["clang-format"] = {
-						args = "-style=Google",
-					},
-					format_on_save = function(bufnr)
-						-- Disable with a global or buffer-local variable
-						if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-							return
-						end
-						return { timeout_ms = 1000 }
-					end,
 				},
-				formatters_by_ft = {
-					asm = { "asmfmt" },
-					astro = js,
-					c = { "clang-format" },
-					cpp = { "clang-format" },
-					html = js,
-					lua = { "stylua" },
-					javascript = js,
-					javascriptreact = js,
-					json = js,
-					prisma = { "prisma" },
-					python = { "black" },
-					rust = { "rustfmt" },
-					svelte = js,
-					swift = { "swift_format" },
-					typescript = js,
-					typescriptreact = js,
-					zig = { "zigfmt" },
+				["clang-format"] = {
+					args = "-style=Google",
 				},
-				format_on_save = function(bufnr)
-					-- Disable with a global or buffer-local variable
-					if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-						return
-					end
-					return { timeout_ms = 1000 }
-				end,
+				swift_format = {
+					command = swift_format_path(),
+				},
+				["clang-format"] = {
+					args = "-style=Google",
+				},
 			},
+			formatters_by_ft = {
+				asm = { "asmfmt" },
+				astro = js,
+				c = { "clang-format" },
+				cpp = { "clang-format" },
+				html = js,
+				lua = { "stylua" },
+				javascript = js,
+				javascriptreact = js,
+				json = js,
+				prisma = { "prisma" },
+				python = { "black" },
+				rust = { "rustfmt" },
+				svelte = js,
+				swift = { "swift_format" },
+				typescript = js,
+				typescriptreact = js,
+				zig = { "zigfmt" },
+			},
+			format_on_save = function(bufnr)
+				-- Disable with a global or buffer-local variable
+				if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+					return
+				end
+				return { timeout_ms = 1000 }
+			end,
 		})
 		vim.api.nvim_create_user_command("FormatDisable", function(args)
 			if args.bang then
