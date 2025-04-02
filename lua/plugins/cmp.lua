@@ -8,7 +8,13 @@ return {
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
 	opts = {
-		keymap = { preset = "default" },
+		keymap = {
+			preset = "default",
+			["<C-space>"] = { "select_and_accept" },
+			["<C-y>"] = { "show", "show_documentation", "hide_documentation" },
+			["<S-Tab>"] = { "select_prev", "fallback" },
+			["<Tab>"] = { "select_next", "fallback" },
+		},
 		appearance = {
 			nerd_font_variant = "normal",
 		},
